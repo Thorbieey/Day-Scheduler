@@ -30,8 +30,6 @@ function renderSavedEvents () {
             $("#event").text(savedEvent);
         }    
     }
-    
-
 }
 
 // Function to store new event in timeblock

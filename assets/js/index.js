@@ -42,8 +42,8 @@ function renderTimeBlocks() {
         // Create div el to house time block
         let $timeblockContainer = $('<div class ="row"></div>');
         let $hourDiv = $('<div class = "col-2 hour"></div>');
-        let $textareaEl = $('<textarea class = "col-8 event" ></textarea>');
-        let $saveBtn =$('<button class = "col-2 saveBtn"></button>');
+        let $textareaEl = $('<textarea class = "col-8 event" placeholder = "Add Event"></textarea>');
+        let $saveBtn =$('<button class = "col-2 saveBtn"><i class="fas fa-save"></button>');
         
         // Set content for hours on timeblock
         $hourDiv.text(hours);

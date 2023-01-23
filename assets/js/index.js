@@ -1,5 +1,7 @@
-// Display current time and date 
+// Page element housing date 
 let $currentDay = $("#currentDay");
+// Main container element - to insert timeblocks
+let $mainEl = $(".container");
 // Button to save user inputted events into time block
 let $saveBtn =$("button");
 
@@ -20,13 +22,41 @@ let hours = [
 
 
 init();
+// Function initialize necessary feature 
 function init() {
     setDate();
+    renderTimeBlocks();
 }
 
+// Function that displays date
 function setDate() {
     // Display date on page
     $currentDay.text(moment().format("dddd, MMMM Do YYYY"));
+}
+
+// Function that displays timeblocks on page
+function renderTimeBlocks() {
+    for (let i = 9; i < 18; i++) {
+        const hours = moment().hour(i).format("h A");   
+
+        // Create div el to house time block
+        let $timeblockContainer = $('<div class ="row"></div>');
+        let $hourDiv = $('<div class = "col-2 hour"></div>');
+        let $textareaEl = $('<textarea class = "col-8 event" ></textarea>');
+        let $saveBtn =$('<button class = "col-2 saveBtn"></button>');
+        
+        // Set content for hours on timeblock
+        $hourDiv.text(hours);
+
+        // Set attribute for events to the hour
+        $textareaEl.attr("data-time", hours)
+
+        // Append content to page
+        $mainEl.append($timeblockContainer);
+        $timeblockContainer.append($hourDiv);
+        $timeblockContainer.append($textareaEl);
+        $timeblockContainer.append($saveBtn);
+    }
 }
 
 // Function to render saved events 

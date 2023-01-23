@@ -74,19 +74,14 @@ function renderSavedEvents () {
     }
 }
 
-// Function to store new event in timeblock
+// Function to save new events
 function saveEvent(event) {
-    // Hour of the day i.e., 9am - 5pm
+    // Hour of timeblock i.e., 9am - 5pm
     let $hour =$(event.target).siblings(".hour").text();
     // store inputted event
-    let $newEvent = $(event.target).siblings("#event").val();
+    let $newEvent = $(event.target).siblings(".event").val();
     // store inputted event in local storage. Key is hour of day
-    localStorage.setItem($hour, $newEvent)
-    $("#event").attr('data-time', $hour);
-    // add hour to class for event text area
-    $("#event").addClass($hour);
-    console.log($hour);
-    
+    localStorage.setItem($hour, $newEvent);
 }
 
 // Event handler for user event save button

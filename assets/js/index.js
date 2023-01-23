@@ -1,5 +1,5 @@
 // Display current time and date 
-let $currentDay = $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"));
+let $currentDay = $("#currentDay");
 // Button to save user inputted events into time block
 let $saveBtn =$("button");
 
@@ -18,11 +18,16 @@ let hours = [
     "5pm"
 ];
 
+
+init();
 function init() {
-    $("#event").attr('data-time', $hour);
-    // renderSavedEvents();
+    setDate();
 }
 
+function setDate() {
+    // Display date on page
+    $currentDay.text(moment().format("dddd, MMMM Do YYYY"));
+}
 
 // Function to render saved events 
 function renderSavedEvents () {

@@ -5,27 +5,13 @@ let $mainEl = $(".container");
 // Button to save user inputted events into time block
 let $saveBtn =$("button");
 
-// 
-let eventTextArea = document.querySelector("#event");
-// Available timeblocks
-let hours = [
-    "9am",
-    "10am",
-    "11am",
-    "12am",
-    "1pm",
-    "2pm",
-    "3pm",
-    "4pm",
-    "5pm"
-];
-
 
 init();
 // Function initialize necessary feature 
 function init() {
     setDate();
     renderTimeBlocks();
+    renderSavedEvents();
 }
 
 // Function that displays date
@@ -59,24 +45,9 @@ function renderTimeBlocks() {
     }
 }
 
-// Function to render saved events 
-function renderSavedEvents () {
-    for (let i = 0; i < hours.length; i++) {
-        const hour = hours[i];
-        console.log(hour);
-        let savedEvent = localStorage.getItem(hour);
-        if (savedEvent !== null){
-            console.log(savedEvent);
-            let test = "." + hour
-            console.log(test);
-            $("#hour").text(savedEvent);
-        }    
-    }
-}
-
-// Function to save new events
+// Function to save new event in timeblock
 function saveEvent(event) {
-    // Hour of timeblock i.e., 9am - 5pm
+    // Hour of the day i.e., 9am - 5pm
     let $hour =$(event.target).siblings(".hour").text();
     // store inputted event
     let $newEvent = $(event.target).siblings(".event").val();
@@ -84,5 +55,20 @@ function saveEvent(event) {
     localStorage.setItem($hour, $newEvent);
 }
 
-// Event handler for user event save button
-$saveBtn.on('click', saveEvent);
+// Function to render saved events 
+function renderSavedEvents() {
+    $("[data-time]").each(function () {
+        // Get data-time value for each textarea
+        let $hour = $(this).attr("data-time");
+        // Get saved event by the hour
+        let $savedEvent = localStorage.getItem($hour);
+        if ($savedEvent !== null){
+            // Set content of each text area to saved event. Only if there's a saved event for that hour
+            console.log($savedEvent);
+            $(this).text($savedEvent);
+        }
+    })
+}
+
+// Event handler for save new event button
+$(".saveBtn").on('click', saveEvent);

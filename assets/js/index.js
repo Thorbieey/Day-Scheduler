@@ -78,19 +78,15 @@ function renderSavedEvents() {
 
 // Function to set colour code
 function setColourCode() {
-    // Store current time from moments clock in same format as hour
+    // Store current time from moments clock in 24 hour format
     let $currentTime = Number(moment().format('H'));
     $("[data-time]").each(function () {
-        // Store hour on each timeblock
+        // Store hour on each timeblock and convert to 24 hour format
         let hour = $(this).attr("data-time")
         let $eventTime = Number(moment(hour, "h A").format("H"));
-        // console.log($eventTime)
-        // console.log($currentTime)
         if ($eventTime > $currentTime) {
             // If timeblock hour is after the current time set textarea colour to green
-            $(this).addClass("future");
-            console.log($eventTime)
-            console.log($currentTime)   
+            $(this).addClass("future");  
         }
         else if ($eventTime < $currentTime) {
             // If timeblock hour is before the current time set textarea colour to ash

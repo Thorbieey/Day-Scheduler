@@ -43,9 +43,11 @@ SO THAT I can manage my time effectively
 * The URL of the GitHub repository: 
 [https://github.com/Thorbieey/Day-Scheduler.git](https://github.com/Thorbieey/Day-Scheduler.git)
 
-#### Screenshot/Demo
+#### Screenshots/Demo
 
-![Demo showing web application's appearance and functionality](./assets/images/demo-day-scheduler-1.png.png)
+![Demos showing web application's appearance and functionality](./assets/images/demo-day-scheduler-1.png)
+
+![Demos showing web application's appearance and functionality](./assets/images/demo-day-scheduler-2.png)
 
 ## Credits
 

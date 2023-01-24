@@ -34,7 +34,7 @@ function renderTimeBlocks() {
         let $timeblockContainer = $('<div class ="row"></div>');
         let $hourDiv = $('<div class = "col-2 hour"></div>');
         let $textareaEl = $('<textarea class = "col-8 event" placeholder = "Add Event"></textarea>');
-        let $saveBtn =$('<button class = "col-2 saveBtn"><i class="fas fa-save"></button>');
+        let $saveBtn =$('<button class = "col-2 saveBtn"><i class="fas fa-save"></i></button>');
         
         // Set content for hours on timeblock
         $hourDiv.text(hours);
@@ -54,10 +54,12 @@ function renderTimeBlocks() {
 function saveEvent(event) {
     // Hour of the day i.e., 9am - 5pm
     let $hour =$(event.target).siblings(".hour").text();
-    // store inputted event
+    // Inputted event/text
     let $newEvent = $(event.target).siblings(".event").val();
-    // store inputted event in local storage. Key is hour of day
+    // Store inputted event in local storage. Key is hour of day
     localStorage.setItem($hour, $newEvent);
+    // Alert user about saved event
+    alert("You have saved an event for " + $hour);
 }
 
 // Function to render saved events 
@@ -69,7 +71,6 @@ function renderSavedEvents() {
         let $savedEvent = localStorage.getItem($hour);
         if ($savedEvent !== null){
             // Set content of each text area to saved event. Only if there's a saved event for that hour
-            console.log($savedEvent);
             $(this).text($savedEvent);
         }
     })
@@ -77,7 +78,6 @@ function renderSavedEvents() {
 
 // Function to set colour code
 function setColourCode() {
-    console.log("test interval")
     // Store current time from moments clock in same format as hour
     let $currentTime = moment().format('h A');
     $("[data-time]").each(function () {
@@ -102,4 +102,4 @@ function setColourCode() {
 $(".saveBtn").on('click', saveEvent);
 
 // Re-run function to set color code every min
-setInterval(setColourCode, 6000);
+setInterval(setColourCode, 60000);

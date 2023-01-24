@@ -90,6 +90,8 @@ function setColourCode() {
         else if ($eventTime < $currentTime) {
             // If timeblock hour is before the current time set textarea colour to ash
             $(this).addClass("past");
+            console.log($eventTime)
+            console.log($currentTime)
         }
         else if ($eventTime == $currentTime) {
             // If timeblock hour is the same as current time set textarea colour to red

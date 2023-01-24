@@ -77,6 +77,7 @@ function renderSavedEvents() {
 
 // Function to set colour code
 function setColourCode() {
+    console.log("test interval")
     // Store current time from moments clock in same format as hour
     let $currentTime = moment().format('h A');
     $("[data-time]").each(function () {
@@ -99,3 +100,6 @@ function setColourCode() {
 
 // Event handler for save new event button
 $(".saveBtn").on('click', saveEvent);
+
+// Re-run function to set color code every min
+setInterval(setColourCode, 6000);

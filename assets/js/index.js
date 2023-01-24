@@ -9,9 +9,14 @@ let $saveBtn =$("button");
 init();
 // Function initialize necessary feature 
 function init() {
+    // Display date
     setDate();
+    // Display time blocks
     renderTimeBlocks();
+    // Display saved events
     renderSavedEvents();
+    // Display colour code
+    setColourCode();
 }
 
 // Function that displays date
@@ -66,6 +71,28 @@ function renderSavedEvents() {
             // Set content of each text area to saved event. Only if there's a saved event for that hour
             console.log($savedEvent);
             $(this).text($savedEvent);
+        }
+    })
+}
+
+// Function to set colour code
+function setColourCode() {
+    // Store current time from moments clock in same format as hour
+    let $currentTime = moment().format('h A');
+    $("[data-time]").each(function () {
+        // Store hour on each timeblock
+        let $eventTime = $(this).attr("data-time");
+        if ($eventTime > $currentTime) {
+            // If timeblock hour is after the current time set textarea colour to green
+            $(this).addClass("future");
+        }
+        else if ($eventTime < $currentTime) {
+            // If timeblock hour is before the current time set textarea colour to ash
+            $(this).addClass("past");
+        }
+        else if ($eventTime == $currentTime) {
+            // If timeblock hour is the same as current time set textarea colour to red
+            $(this).addClass("present");
         }
     })
 }
